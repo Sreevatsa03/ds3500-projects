@@ -36,7 +36,7 @@ class Artists():
         for i in range(len(src_list)):
             # aggregate and clean data
             grouped = self.aggregate_df(df, src_list[i], tar_list[i], vals, 25)
-            if tar_list[i] is 'BirthDecade':
+            if tar_list[i] == 'BirthDecade':
                 grouped = grouped[grouped[tar_list[i]] != 0]
 
             # make sankey diagram
