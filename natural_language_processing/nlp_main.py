@@ -6,7 +6,10 @@ def main():
     nlp = NLP()
     parser = NLP_Parsers()
 
-    nlp.load_text('sample_texts/turkjbio-44-110.pdf', 'sample', parser.pdf_parser)
+    nlp.load_text('texts/turkjbio-44-110.pdf', 'Paper1', parser.pdf_parser)
+    nlp.load_text('texts/1-s2.0-S0952791514001563-main.pdf', 'Paper2', parser.pdf_parser)
+    nlp.load_text('texts/dark_side_of_CRISPR.txt', 'Article1', parser.txt_parser)
+    nlp.load_text('texts/promises_of_CRISPR.txt', 'Article2', parser.txt_parser)
     # pp.pprint(nlp.data)
     nlp.compare_num_words()
     

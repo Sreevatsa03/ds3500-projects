@@ -44,7 +44,7 @@ class NLP_Parsers:
         # make string into all lowercase
         text = text.lower()
 
-        # remove punctuation, white space, and otehr weird characters
+        # remove punctuation, white space, and other weird characters
         text = re.sub(r"(@\[A-Za-z0-9]+)|([^0-9A-Za-z \t])|(\w+:\/\/\S+)|^rt|http.+?", "", text)
 
         # remove stop words
@@ -85,6 +85,8 @@ class NLP_Parsers:
         wc = Counter(words)
         num = len(words)
 
+        # find average sentence length ##################### -----------------------
+
         # return dictionary of wordcount and numwords
         results = {'wordcount': wc, 'numwords': num}
         return results
@@ -109,6 +111,30 @@ class NLP_Parsers:
         wc = Counter(words)
         num = len(words)
         
+        # return dictionary of wordcount and numwords
+        results = {'wordcount': wc, 'numwords': num}
+        return results
+
+    def txt_parser(self, filename) -> dict[str, Any]:
+        """
+        Default parsing method that assumes text file and outputs dictionary containing basic statistics of text
+
+        :param str filename: file path of file being passed in
+        :return results: dictionary containing occurance of each word and total number of words in the text
+        :rtype results: dict[str, Any]
+        """
+
+        # read file and extract text
+        with open(filename) as f:
+            text = f.read()
+        
+        # split text into list of words
+        words = NLP_Parsers.clean_text(text)
+
+        # calculate number of words and count per word
+        wc = Counter(words)
+        num = len(words)
+
         # return dictionary of wordcount and numwords
         results = {'wordcount': wc, 'numwords': num}
         return results

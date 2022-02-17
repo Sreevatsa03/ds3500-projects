@@ -17,7 +17,7 @@ class NLP:
         self.data = defaultdict(dict)
 
     @staticmethod
-    def _default_parser(filename=None) -> dict[str, Any]:
+    def _default_parser(filename) -> dict[str, Any]:
         """
         Default parsing method that assumes text file and outputs dictionary containing basic statistics of text
 
