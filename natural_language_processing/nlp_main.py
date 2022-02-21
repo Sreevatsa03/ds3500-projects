@@ -1,5 +1,4 @@
-from nlp import NLP
-from nlp_parsers import NLP_Parsers
+from nlp import NLP, NLP_Parsers
 import pprint as pp
 
 def main():
