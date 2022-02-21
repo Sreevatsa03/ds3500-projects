@@ -38,7 +38,7 @@ class NLP:
         num = len(words)
 
         # return dictionary of wordcount and numwords
-        results = {'wordcount': wc, 'numwords': num}
+        results = {'word_count': wc, 'num_words': num}
         return results
 
     def load_text(self, filename, label=None, parser=None) -> None:
@@ -73,7 +73,25 @@ class NLP:
         Create bar chart of texts and their total number of words
         """
         
-        num_words = self.data['numwords']
+        num_words = self.data['num_words']
         for label, nw in num_words.items():
             plt.bar(label, nw)
         plt.show()
+
+    @staticmethod
+    def polarity_subjectivity_lists(scored_text) -> tuple[list[Any], list[Any]]:
+        """
+        Find polarity and subjectivity for each body of text
+
+        :param scored_text: dictionary of polarity and subjectivity scores for multiple texts
+        :type scored_text: dict[str, tuple[Any, Any]] 
+        :return subjectivity: list of subjectivity scores
+        :rtype polarity: list[Any]
+        :return polarity: list of polarity scores
+        :rtype polarity: list[Any]
+        """
+
+        scores = scored_text.values()
+        polarity = [x[0] for x in scores]
+        subjectivity = [x[1] for x in scores]
+        return (subjectivity, polarity)
