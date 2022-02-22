@@ -14,12 +14,12 @@ def main():
     nlp.load_text('texts/promises_of_CRISPR.txt', 'Article2', parser.txt_parser)
     nlp.load_text('texts/guide_to_crispr.txt', 'Article3', parser.txt_parser)
 
-    # nlp.compare_num_words()
+    nlp.compare_num_words()
     nlp.word_count_sankey(None, 7, False)
-    # nlp.word_count_sankey(None, 7, True)
-    # nlp.sentiment_analysis()
-    # nlp.sentence_length_and_unique_words_comparison()
-    # nlp.plot_heaps_law()
+    nlp.word_count_sankey(None, 7, True)
+    nlp.sentiment_analysis()
+    nlp.sentence_length_and_unique_words_comparison()
+    nlp.plot_heaps_law()
 
 if __name__ == '__main__':
     main()
