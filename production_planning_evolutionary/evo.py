@@ -9,6 +9,10 @@ import random as rand
 import copy
 from functools import reduce
 import pickle
+import csv
+import seaborn as sns
+import matplotlib.pyplot as plt
+import pandas as pd
 
 class Evo:
 
@@ -128,3 +132,25 @@ class Evo:
         for eval,sol in self.pop.items():
             rslt += str(dict(eval))+":\t"+str(sol)+"\n"
         return rslt
+
+    def save_solutions(self):
+        with open("solutions.csv", "w") as csvfile:
+            writer = csv.writer(csvfile)
+            writer.writerow(["teamname", "setups", "lowpriority", "delays"])
+            for key in self.pop.keys():
+                writer.writerow(["NukalaSRiveraA", key[0][1], key[1][1], key[2][1]])
+
+    def visualize(self):
+        population = copy.deepcopy(self.pop)
+        data = [[key[0][1], key[1][1], key[2][1]] for key in population.keys()]
+        df = pd.DataFrame(data=data, columns = ["setups", "low priority", "delays"]) 
+        setup = df["setups"]
+        priority = df["low priority"]
+        delay = df["delays"]
+
+        fig = plt.figure()
+        ax = fig.add_subplot(111, projection="3d")
+        ax.scatter(setup, priority, delay)
+        plt.show()
+        sns.pairplot(data=df)
+        plt.show()
