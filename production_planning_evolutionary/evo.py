@@ -151,6 +151,6 @@ class Evo:
         fig = plt.figure()
         ax = fig.add_subplot(111, projection="3d")
         ax.scatter(setup, priority, delay)
-        plt.show()
+        plt.savefig('3D Scatterplot')
         sns.pairplot(data=df)
-        plt.show()
+        plt.savefig('Pairplot')
