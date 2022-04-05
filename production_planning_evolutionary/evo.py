@@ -128,26 +128,37 @@ class Evo:
 
     def __str__(self):
         """ Output the solutions in the population """
+
         rslt = ""
         for eval,sol in self.pop.items():
             rslt += str(dict(eval))+":\t"+str(sol)+"\n"
         return rslt
 
     def save_solutions(self):
+        """ Save the solutions in the population in a csv file """
+
+        # wrtie to a csv file
         with open("solutions.csv", "w") as csvfile:
             writer = csv.writer(csvfile)
             writer.writerow(["teamname", "setups", "lowpriority", "delays"])
             for key in self.pop.keys():
+                # export setups, lowpriority, and delays data to csv
                 writer.writerow(["NukalaSRiveraA", key[0][1], key[1][1], key[2][1]])
 
     def visualize(self):
+        """ Create two visualizations to show the tradeoffs between agents: 3D scatterplot and pairplot """
+
+        # copy the solutions to not mess them up
         population = copy.deepcopy(self.pop)
+
+        # put the solutions into a dataframe for plotting
         data = [[key[0][1], key[1][1], key[2][1]] for key in population.keys()]
         df = pd.DataFrame(data=data, columns = ["setups", "low priority", "delays"]) 
         setup = df["setups"]
         priority = df["low priority"]
         delay = df["delays"]
 
+        # plot 3D scatterplot and pairplot
         fig = plt.figure()
         ax = fig.add_subplot(111, projection="3d")
         ax.scatter(setup, priority, delay)
